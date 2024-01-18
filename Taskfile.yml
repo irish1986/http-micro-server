@@ -5,6 +5,7 @@ vars:
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
   APP_DIR: "{{.PROJECT_DIR}}/app"
+  DOCKER_DIR: "{{.PROJECT_DIR}}/docker"
 
 includes:
   docker: .taskfiles/docker.yml

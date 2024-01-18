@@ -1,24 +1,30 @@
 ---
 version: "3"
 
+
+vars:
+  GITHUB_USER: irish1986
+  REGISTRY: ghcr.io
+  IMAGE_NAME: http-micro-server
+
 tasks:
 
   auth:
     desc: Build docker container
     cmds:
-      - echo $GHCR_TOKEN | docker login ghcr.io -u $GHCR_USER --password-stdin
+      - echo $GHCR_TOKEN | docker login {{.REGISTRY}} -u {{.GITHUB_USER}}--password-stdin
 
   build:
     desc: Build docker container
     cmds:
-      - docker build --tag=irish1986/apt-cacher-ng .
+      - docker build --tag={{.GITHUB_USER}}/{{.IMAGE_NAME}} .
 
   tag:
     desc: Build docker container
     cmds:
-      - docker tag irish1986/apt-cacher-ng ghcr.io/irish1986/apt-cacher-ng:local
+      - docker tag {{.GITHUB_USER}}/{{.IMAGE_NAME}} {{.REGISTRY}}/{{.GITHUB_USER}}/{{.IMAGE_NAME}}:local
 
   push:
     desc: Build docker container
     cmds:
-      - docker push ghcr.io/irish1986/apt-cacher-ng
+      - docker push {{.REGISTRY}}/{{.GITHUB_USER}}/{{.IMAGE_NAME}}

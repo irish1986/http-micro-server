@@ -14,3 +14,11 @@ which python3
 python3 app/main.py
 curl -i http://localhost:8080/hello
 ```
+
+### Build container locally
+
+Once the server works successfully, we can build it locally.
+
+```bash
+task docker:build
+```
