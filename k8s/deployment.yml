@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask
-  namespace: dev
+  namespace: http-micro-server
 spec:
   replicas: 2
   selector:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: flask
-          image: aputra/app-lesson157:v0.1.6
+          image: ghcr.io/irish1986/http-micro-server:sha-7ed01a2
           ports:
             - name: http
               containerPort: 8080
