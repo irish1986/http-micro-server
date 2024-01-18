@@ -22,7 +22,7 @@ Once the server works successfully, we can build it locally.  Using `docker.io/p
 The solution is to move to other options:
 
 * `docker.io/python:3.11.6` ~1 GB
-* `docker.io/python:3.11.6-slim-bookworms`
+* `docker.io/python:3.11.6-slim-bookworm` ~129MB
 * `gcr.io/distroless/python3-debian12`
 * Multi-stage (will get into these details later)
 

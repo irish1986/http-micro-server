@@ -1,4 +1,4 @@
-FROM python:3.11.6
+FROM docker.io/python:3.11.6-slim-bookworm
 
 COPY app/main.py .
 
