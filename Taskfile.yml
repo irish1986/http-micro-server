@@ -1,0 +1,20 @@
+---
+version: '3'
+
+vars:
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+  APP_DIR: "{{.PROJECT_DIR}}/app"
+
+includes:
+  docker: .taskfiles/docker.yml
+  pre-commit: .taskfiles/pre-commit.yml
+  python: .taskfiles/python.yml
+
+tasks:
+
+  update:
+    desc: Update & Upgrade
+    cmds:
+      - sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+    silent: true
