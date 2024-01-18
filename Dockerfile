@@ -1,4 +1,4 @@
-FROM docker.io/python:3.11.6-slim-bookworm
+FROM gcr.io/distroless/python3-debian12
 
 COPY app/main.py .
 

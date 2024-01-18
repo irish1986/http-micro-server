@@ -23,8 +23,10 @@ The solution is to move to other options:
 
 * `docker.io/python:3.11.6` ~1 GB
 * `docker.io/python:3.11.6-slim-bookworm` ~129MB
-* `gcr.io/distroless/python3-debian12`
+* `gcr.io/distroless/python3-debian12` ~58MB
 * Multi-stage (will get into these details later)
+
+Distroless is really the king here !
 
 ```bash
 task docker:build
