@@ -17,7 +17,14 @@ curl -i http://localhost:8080/hello
 
 ### Build container locally
 
-Once the server works successfully, we can build it locally.
+Once the server works successfully, we can build it locally.  Using `docker.io/python:3.11.6` carries the burden of a large files size (~1GB for this little http server that does nothing significant).
+
+The solution is to move to other options:
+
+* `docker.io/python:3.11.6` ~1 GB
+* `docker.io/python:3.11.6-slim-bookworms`
+* `gcr.io/distroless/python3-debian12`
+* Multi-stage (will get into these details later)
 
 ```bash
 task docker:build
