@@ -1,4 +1,4 @@
-FROM debian:12-slim AS build
+FROM docker.io/debian:bookworm-slim AS build
 
 RUN apt-get update && \
     apt-get install --no-install-suggests --no-install-recommends --yes python3-venv gcc libpython3-dev && \
