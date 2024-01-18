@@ -1,7 +1,7 @@
-import os.path
-from time import sleep
-from http.server import HTTPServer, BaseHTTPRequestHandler
 import contextlib
+import os.path
+from http.server import HTTPServer, BaseHTTPRequestHandler
+from time import sleep
 
 HOST = "0.0.0.0"
 PORT = 8080
@@ -34,6 +34,6 @@ def run(host, port, server_class=HTTPServer, handler_class=Handler):
 
 
 if __name__ == "__main__":
-    sleep(30)
+    sleep(10)
     print("Starting server...")
     run(HOST, PORT)
