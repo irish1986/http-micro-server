@@ -1,5 +1,9 @@
 FROM docker.io/debian:bookworm-slim AS build
 
+LABEL org.opencontainers.image.source=https://github.com/irish1986/http-micro-server
+LABEL org.opencontainers.image.description="a simple http-micro-server"
+LABEL org.opencontainers.image.licenses=MIT
+
 RUN apt-get update && \
     apt-get install --no-install-suggests --no-install-recommends --yes python3-venv gcc libpython3-dev && \
     python3 -m venv /venv && \
