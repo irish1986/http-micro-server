@@ -15,7 +15,7 @@ COPY requirements.txt /requirements.txt
 
 RUN /venv/bin/pip install --disable-pip-version-check -r /requirements.txt
 
-FROM gcr.io/distroless/python3-debian12@sha256:e8e50bc861b16d916f598d7ec920a8cef1e35e99b668a738fe80c032801ceb78
+FROM gcr.io/distroless/python3-debian12@sha256:2d0f1cb8c44a9d27e90b27c797d1e55ac3a75f75009415d99aa8c5a7f62cc305
 
 COPY --from=build-venv /venv /venv
 
