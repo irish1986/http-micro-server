@@ -67,13 +67,3 @@ repos:
     rev: v1.7.3
     hooks:
       - id: actionlint
-  - repo: https://github.com/iamthefij/docker-pre-commit
-    rev: v3.0.1
-    hooks:
-      - id: docker-compose-check
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.7.1
-    hooks:
-      - id: ruff
-        args: [ --fix ]
-      - id: ruff-format
