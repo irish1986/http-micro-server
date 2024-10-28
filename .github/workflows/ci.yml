@@ -22,9 +22,11 @@ jobs:
     uses: irishlab-io/pipelines/.github/workflows/reusable-docker-build.yml@main
 
     permissions:
+      attestations: write
       contents: read
-      packages: write # needed to push docker image to ghcr.io
-      pull-requests: write # needed to create and update comments in PRs
+      id-token: write
+      packages: write
+      pull-requests: write
 
     with:
       ghcr-enable: true
