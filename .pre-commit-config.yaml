@@ -2,65 +2,78 @@
 fail_fast: false
 ci:
   autoupdate_schedule: monthly
+  skip:
+    - actionlint
+    - ansible-lint
+    - ggshield
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.30.0
     hooks:
-      # Git style
+      - id: commitizen
+        stages: [commit-msg]
+  - repo: https://github.com/gitguardian/ggshield
+    rev: v1.32.2
+    hooks:
+      - id: ggshield
+        language_version: python3
+        stages: [pre-commit]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
       - id: check-added-large-files
+        args: [--maxkb=2048]
+      - id: check-case-conflict
+      - id: check-json
       - id: check-merge-conflict
       - id: check-vcs-permalinks
-      - id: forbid-new-submodules
-      # Common errors
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
-        args: [--markdown-linebreak-ext=md]
       - id: check-yaml
-        files: .*\.(yaml|yml)$
-      - id: check-merge-conflict
-      - id: check-executables-have-shebangs
-      # Cross platform
-      - id: check-case-conflict
+        files: /.(yaml|yml)$
+      - id: end-of-file-fixer
+      - id: forbid-new-submodules
+      - id: forbid-submodules
       - id: mixed-line-ending
-        args: [--fix=lf]
+        args:
+          - --fix=lf
+      - id: trailing-whitespace
+        args:
+          - --markdown-linebreak-ext=md
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.5.4
+    rev: v1.5.5
     hooks:
       - id: remove-crlf
       - id: remove-tabs
-  - repo: https://github.com/sirosen/fix-smartquotes
-    rev: 0.2.0
+  - repo: https://github.com/sirosen/texthooks
+    rev: 0.6.7
     hooks:
+      - id: alphabetize-codeowners
+      - id: fix-ligatures
       - id: fix-smartquotes
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.42.0
+    hooks:
+      - id: markdownlint
+        args:
+          - --config
+          - .config/.markdown-lint.yml
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.33.0
+    rev: v1.35.1
     hooks:
       - id: yamllint
         args:
           - -c
-          - .config/.yamllint.yml
+          - .config/.yaml-lint.yml
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.3
+    hooks:
+      - id: actionlint
   - repo: https://github.com/iamthefij/docker-pre-commit
     rev: v3.0.1
     hooks:
       - id: docker-compose-check
-  - repo: https://github.com/psf/black
-    rev: 23.12.1
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.7.1
     hooks:
-      - id: black
-        language_version: python3.12
-        args:
-          - --line-length=128
-  - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0
-    hooks:
-      - id: flake8
-        args:
-          - "--max-line-length=128"
-        additional_dependencies:
-          - flake8-bugbear
-          - flake8-comprehensions
-          - flake8-simplify
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.8.0
-    hooks:
-      - id: mypy
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
